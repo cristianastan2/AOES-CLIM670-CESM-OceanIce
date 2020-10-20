@@ -64,7 +64,7 @@
 	<![endif]-->
 
   <title>
-  Figures &ndash; Ocean and Ice Modeling
+  Review &ndash; Ocean and Ice Modeling
   </title>  
 
   </head>
@@ -195,87 +195,286 @@
 
 
 
-<h1 class="maintitle"><a href="../index.html">Ocean and Ice Modeling</a>: Figures</h1>
 
 
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="../"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span><span class="sr-only">lesson home</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+    <h3 class="maintitle"><a href="../">Ocean and Ice Modeling</a></h3>
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="../02-Ocean-Modeling/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
+      
+    </h3>
+  </div>
+</div>
 
 <article>
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+    <h1 class="maintitle">Review</h1>
+  </div>
+  <div class="col-md-1">
+  </div>
+</div>
 
-<script>
-  window.onload = function() {
-    var lesson_episodes = [
+
+
+
+
+
+
+
+
+
+
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong>  min
+      <br/>
+      <strong>Exercises:</strong>  min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>What have we learned so far?</p>
+</li>
+	
+	<li><p>Where are we going?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<p>Midway through the semester is a good time to pause and review what we have learned so far and what we have left.</p>
+
+<h2 id="what-have-we-learned-so-far">What have we learned so far?</h2>
+
+<ul>
+  <li>Some Unix commands</li>
+  <li>How to use JupyterLab</li>
+  <li>Reading and plotting Climate Model Output</li>
+  <li>An overview of Atmospheric Models</li>
+  <li>How to run CESM in fully coupled mode (B compset)</li>
+  <li>How to modify the CESM to change how long to run, what to output and how often</li>
+  <li>How to understand and postprocess CESM output</li>
+  <li>How to run diagnostics packages for CESM</li>
+  <li>Some advanced Python functions – groupby</li>
+  <li>How to setup and run the Atmosphere and Land components of CESM with DOCN (F Compset)</li>
+  <li>How to troubleshoot our model runs</li>
+</ul>
+
+<h2 id="where-are-we-going">Where are we going?</h2>
+
+<ul>
+  <li>Overview of Ocean and Ice Modeling</li>
+  <li>How to run the Ocean and and Ice components of CESM with DATM</li>
+  <li>How to change model code</li>
+  <li>How to perform Intervention or Idealized experiments</li>
+  <li>Reduced complexity models, why use them? how to run them?</li>
+  <li>How to run an Initialized Prediction Experiment (Forecast)</li>
+  <li>Regional Modeling</li>
+  <li>Land and Land Ice</li>
+  <li>Your projects!</li>
+</ul>
+
+<h2 id="atmospheric-modeling">Atmospheric Modeling</h2>
+
+<ol>
+  <li>
+    <p>Dynamics (Equations of motion)
+Assumptions: hydrostatic
+Linearize, discretize, solve numerically
+Predict:  thickness(w),u,v,q,T</p>
+  </li>
+  <li>Physics (Sub grid-scale Parameterized)
+    <ul>
+      <li>Clouds</li>
+      <li>Radiation</li>
+      <li>Convection</li>
+      <li>Microphysics</li>
+      <li>Boundary layer</li>
+      <li>Fluxes</li>
+      <li>Gravity waves</li>
+    </ul>
+  </li>
+  <li>Boundary Forcing
+Information exchnaged with or prescried by other components of the climate system (e.g. soil moisture, sea surface temperature)</li>
+</ol>
+
+<h2 id="cesm-quickstart">CESM Quickstart</h2>
+
+<p>A review of our CESM quickstart procedure</p>
+
+<p>Create a newcase (this script is located in CIMEROOT/scripts)</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./create_newcase <span class="nt">--case</span> CASEROOT <span class="nt">--res</span> RESOLUTION <span class="nt">--compset</span> COMPSET <span class="nt">--project</span> UGMU0032
+</code></pre></div></div>
+
+<p>Setup the case (run from your case directory)</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./case.setup
+</code></pre></div></div>
+
+<p>Make your changes to the namelists, .xml files, and/or source codes</p>
+
+<ul>
+  <li>Use <code class="language-plaintext highlighter-rouge">xmlchange</code> for <code class="language-plaintext highlighter-rouge">.xml</code> files</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">user_nl_xxx</code> for namelist changes</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">SourceMods/src.xxx</code> for code changes (we will talk about this today)</li>
+</ul>
+
+<p>Build the case</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>qcmd <span class="nt">--</span> ./case.build
+</code></pre></div></div>
+
+<p>Submit the run</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./case.submit
+</code></pre></div></div>
+
+<h2 id="cesm-compsets-we-have-used-so-far">CESM Compsets we have used so far</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">B</code> all components are active (fully coupled)</li>
+  <li><code class="language-plaintext highlighter-rouge">F</code> atmosphere and land are active; ocean and ice are inactive (data)</li>
+</ul>
+
+<h2 id="today-we-will-work-with">Today we will work with</h2>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">G</code> ocean and ice are active; atmosphere and land are inactive (data)</li>
+</ul>
+
+
+
+
+
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
     
-      
-    "/01-Review/index.html",
+    <li>
+</li>
     
-      
-    "/02-Ocean-Modeling/index.html",
-    
-      
-    "/03-Ice-Modeling/index.html",
-    
-      
-    "/04-Running-OcnIce/index.html"
-    
-    ];
-
-    var xmlHttp = [];  /* Required since we are going to query every episode. */
-    for (i=0; i < lesson_episodes.length; i++) {
-
-      xmlHttp[i] = new XMLHttpRequest();
-      xmlHttp[i].episode = lesson_episodes[i];  /* To enable use this later. */
-      xmlHttp[i].onreadystatechange = function() {
-
-        if (this.readyState == 4 && this.status == 200) {
-          var parser = new DOMParser();
-          var htmlDoc = parser.parseFromString(this.responseText,"text/html");
-          var htmlDocArticle = htmlDoc.getElementsByTagName("article")[0];
-
-          var article_here = document.getElementById(this.episode);
-          var images = htmlDocArticle.getElementsByTagName("img");
-
-          if (images.length > 0) {
-            var h1text = htmlDocArticle.getElementsByTagName("h1")[0].innerHTML;
-
-            var htitle = document.createElement('h2');
-            htitle.innerHTML = h1text;
-            article_here.appendChild(htitle);
-
-            var image_num = 0;
-            for (let image of images) {
-              image_num++;
-
-              var title = document.createElement('p');
-              title.innerHTML = "<strong>Figure " + image_num + ".</strong> " + image.alt;
-              article_here.appendChild(title);
-
-              article_here.appendChild(image.cloneNode(false));
-
-              if (image_num < images.length) {
-                var hr = document.createElement('hr');
-                article_here.appendChild(hr);
-              }
-            }
-          }
-        }
-      }
-      episode_url = ".." + lesson_episodes[i];
-      xmlHttp[i].open("GET", episode_url);
-      xmlHttp[i].send(null);
-    }
-  }
-</script>
-
-<article id="/01-Review/index.html" class="figures"></article>
-
-<article id="/02-Ocean-Modeling/index.html" class="figures"></article>
-
-<article id="/03-Ice-Modeling/index.html" class="figures"></article>
-
-<article id="/04-Running-OcnIce/index.html" class="figures"></article>
-
+  </ul>
+</blockquote>
 
 </article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="../"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span><span class="sr-only">lesson home</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="../02-Ocean-Modeling/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
+      
+    </h3>
+  </div>
+</div>
+
 
       
       

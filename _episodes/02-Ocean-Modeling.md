@@ -11,16 +11,16 @@ Just like the atmosphere and land models are typically run together, the ocean a
 
 ## Ocean Models
 
-The CESM2 ocean component is called POP (Parallel Ocean Program).  The next version of CESM (CESM3) will use a different ocean model called MOM (Modular Ocean Model).  Regardless of the exact model used, the fundamentals of ocean modeling are similar and consist of dynamics and physics. They may also consist of biological and processes as well.
+The CESM2 ocean component is called POP (Parallel Ocean Program).  The next version of CESM (CESM3) will use a different ocean model called MOM (Modular Ocean Model).  Regardless of the exact model used, the fundamentals of ocean modeling are similar and consist of dynamics and physics. They may also consist of biological and chemical processes as well, but we will not discuss this part.
 
-1. Dynamics
+__Dynamics__
 
 * Seven Equations and 7 unknowns: U,V,W,T,S,rho,P
 * Plus equations for tracers (chemical, biological, isotopes indicated age of water masses)
 * Approximations: Hydrostatic, Boussinesq
 * Linearize, discretize, solve numerically 
 
-2. Parameterized Physics
+__Parameterized Physics__
 
 * Vertical mixing: surface boundary layer, interior
 

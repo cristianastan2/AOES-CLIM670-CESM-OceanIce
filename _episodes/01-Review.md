@@ -60,33 +60,34 @@ Information exchnaged with or prescried by other components of the climate syste
 
 A review of our CESM quickstart procedure
 
-1. Create a newcase (this script is located in CIMEROOT/scripts)
+Create a newcase (this script is located in CIMEROOT/scripts)
+
 ~~~
 ./create_newcase --case CASEROOT --res RESOLUTION --compset COMPSET --project UGMU0032
 ~~~
 {: .language-bash}
 
-2. Setup the case (run from your case directory)
+Setup the case (run from your case directory)
+
 ~~~
 ./case.setup
 ~~~
 {: .language-bash}
 
-3. Make your changes to the namelists, .xml files, and/or source codes
+Make your changes to the namelists, .xml files, and/or source codes
 
-Use `xmlchange` for `.xml` files
+* Use `xmlchange` for `.xml` files
+* Use `user_nl_xxx` for namelist changes
+* Use `SourceMods/src.xxx` for code changes (we will talk about this today)
 
-Use `user_nl_xxx` for namelist changes
+Build the case
 
-Use `SourceMods/src.xxx` for code changes (we will talk about this today)
-
-4. Build the case
 ~~~
 qcmd -- ./case.build
 ~~~
 {: .language-bash}
 
-4. Submit the run
+Submit the run
 ~~~
 ./case.submit
 ~~~
@@ -96,5 +97,7 @@ qcmd -- ./case.build
 
 * `B` all components are active (fully coupled)
 * `F` atmosphere and land are active; ocean and ice are inactive (data)
+
+## Today we will work with
 * `G` ocean and ice are active; atmosphere and land are inactive (data)
 

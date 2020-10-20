@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="last-modified" content="2020-09-29 07:15:05 -0600">
+    <meta http-equiv="last-modified" content="2020-10-19 19:15:21 -0600">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- meta "search-domain" used for google site search function google_search() -->
     <meta name="search-domain" value="">
@@ -47,7 +47,7 @@
     <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-16x16.png" sizes="16x16" />
     <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-128.png" sizes="128x128" />
-    <meta name="application-name" content="Software Carpentry - CESM Troubleshooting"/>
+    <meta name="application-name" content="Software Carpentry - Ocean and Ice Modeling"/>
     <meta name="msapplication-TileColor" content="#FFFFFF" />
     <meta name="msapplication-TileImage" content="../assets/favicons/swc/mstile-144x144.png" />
     <meta name="msapplication-square70x70logo" content="../assets/favicons/swc/mstile-70x70.png" />
@@ -64,7 +64,7 @@
 	<![endif]-->
 
   <title>
-  Postprocessing &ndash; CESM Troubleshooting
+  Ocean and Sea Ice Modeling &ndash; Ocean and Ice Modeling
   </title>  
 
   </head>
@@ -131,16 +131,16 @@
           <ul class="dropdown-menu">
             
             
-            <li><a href="../01-Our-Experiments-Troubleshooting/index.html">Our Experiments</a></li>
+            <li><a href="../01-Review/index.html">Review</a></li>
             
             
-            <li><a href="../02-history-setup/index.html">History and Setup for Diagnostics</a></li>
+            <li><a href="../02-Ocean-Modeling/index.html">Ocean and Sea Ice Modeling</a></li>
             
             
-            <li><a href="../03-diagnostics/index.html">Model Diagnostics Packages</a></li>
+            <li><a href="../03-Ice-Modeling/index.html">Sea Ice Modeling</a></li>
             
             
-            <li><a href="../04-postprocessing/index.html">Postprocessing</a></li>
+            <li><a href="../04-Running-OcnIce/index.html">CESM G compset</a></li>
             
 	    <li role="separator" class="divider"></li>
             <li><a href="../aio/index.html">All in one page (Beta)</a></li>
@@ -224,19 +224,19 @@
   <div class="col-xs-1">
     <h3 class="text-left">
       
-      <a href="../03-diagnostics/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      <a href="../01-Review/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
       
     </h3>
   </div>
   <div class="col-xs-10">
     
-    <h3 class="maintitle"><a href="../">CESM Troubleshooting</a></h3>
+    <h3 class="maintitle"><a href="../">Ocean and Ice Modeling</a></h3>
     
   </div>
   <div class="col-xs-1">
     <h3 class="text-right">
       
-      <a href="../"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span><span class="sr-only">lesson home</span></a>
+      <a href="../03-Ice-Modeling/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
       
     </h3>
   </div>
@@ -247,7 +247,7 @@
   <div class="col-md-1">
   </div>
   <div class="col-md-10">
-    <h1 class="maintitle">Postprocessing</h1>
+    <h1 class="maintitle">Ocean and Sea Ice Modeling</h1>
   </div>
   <div class="col-md-1">
   </div>
@@ -269,18 +269,15 @@
 
   <div class="row">
     <div class="col-md-3">
-      <strong>Teaching:</strong> 0 min
+      <strong>Teaching:</strong>  min
       <br/>
-      <strong>Exercises:</strong> 0 min
+      <strong>Exercises:</strong>  min
     </div>
     <div class="col-md-9">
       <strong>Questions</strong>
       <ul>
 	
-	<li><p>What are some common run time configuration changes?</p>
-</li>
-	
-	<li><p>How do I make these changess?</p>
+	<li><p>How to Ocean and Ice Models work?</p>
 </li>
 	
       </ul>
@@ -300,34 +297,58 @@
 
 </blockquote>
 
-<p>The process of going from <code class="language-plaintext highlighter-rouge">history</code> files to <code class="language-plaintext highlighter-rouge">timeseries</code> files and to convert 3D atmospheric data from the model coordinate system to selected pressure levels. We will learn how to use the CESM Postprocessing Tools</p>
+<p>Just like the atmosphere and land models are typically run together, the ocean and sea ice models are also typically run together.  We will learn about what ocean and sea ice models predict, what they explicitly resolve, what they paramaterize, and some of the challenges of ocean and sea ice modeling.</p>
 
-<p>The post processing scripts are located in your ~/scripts/ directory.
-You can find them using ls <em>create</em>.</p>
+<h2 id="ocean-models">Ocean Models</h2>
 
-<h4 id="open-the-script-in-a-text-editor-eg-gedit-vi-emacs">Open the script in a text editor (e.g. gedit, vi, emacs)</h4>
+<p>The CESM2 ocean component is called POP (Parallel Ocean Program).  The next version of CESM (CESM3) will use a different ocean model called MOM (Modular Ocean Model).  Regardless of the exact model used, the fundamentals of ocean modeling are similar and consist of dynamics and physics. They may also consist of biological and chemical processes as well, but we will not discuss this part.</p>
 
-<h4 id="change-the-lines-of-the-script-relevant-for-your-run-for-example-in-atmcreate_timeseriesncl">Change the lines of the script relevant for your run, for example, in `atm.create_timeseries.ncl’</h4>
+<p><strong>Dynamics</strong></p>
 
-<p>run_name = “test1”
-  styr = 1
-  enyr = 4
-  work_dir = “/glade/scratch/kpegion/”
-  archive_dir = “/glade/scratch/kpegion/archive/”+run_name+”/atm/hist”</p>
+<ul>
+  <li>Seven Equations and 7 unknowns: U,V,W,T,S,rho,P</li>
+  <li>Plus equations for tracers (chemical, biological, isotopes indicated age of water masses)</li>
+  <li>Approximations: Hydrostatic, Boussinesq</li>
+  <li>Linearize, discretize, solve numerically</li>
+</ul>
 
-<h4 id="run-the-postprocessing-script">Run the postprocessing script</h4>
+<p><strong>Parameterized Physics</strong></p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ncl atm.create_timeseries.ncl
-</code></pre></div></div>
+<ul>
+  <li>
+    <p>Vertical mixing: surface boundary layer, interior</p>
+  </li>
+  <li>
+    <p>Lateral mixing: mesoscale eddies
+Such as the Kuroshio, Gulf Stream, Aghulas, Brazil, etc.  This is weather in the ocean.  Unlike in the atmosphere, current climate resolution ocean models do not resolve ocean weather.</p>
+  </li>
+  <li>
+    <p>Horizontal viscosity</p>
+  </li>
+  <li>
+    <p>Overflows (Deep channel and Continental shelves)
+Parameterizes the acceleration of dense water down the slope of bottom topography in deep channels (Denmark Strait, Faroe Bank Channel) and continental shelves (Ross and Weddell Seas).  This acceleration of dense water causes vigorious mixing and entrainment that is smaller than the resolution of ocn models.</p>
+  </li>
+  <li>
+    <p>Submesoscale eddies</p>
+  </li>
+  <li>
+    <p>Estuary box model parmeterization (Rivers)</p>
+  </li>
+  <li>
+    <p>Solar absorption: how is radiation absorbed at different depths?</p>
+  </li>
+</ul>
 
-<h4 id="the-timeseries-files-are-located-in">The timeseries files are located in:</h4>
-<p><code class="language-plaintext highlighter-rouge">/glade/scratch/kpegion/processed/&lt;case name&gt;/</code></p>
+<h2 id="some-challenges-in-ocean-modeling">Some Challenges in Ocean Modeling</h2>
 
-<p>You can take a quick look at them in <code class="language-plaintext highlighter-rouge">ncview</code>.
-To do Assignment #2, you can read them in using <code class="language-plaintext highlighter-rouge">xarray</code></p>
-
-<p>Run the post-processing for whichever component is of interest to you.</p>
-
+<ul>
+  <li>Irregular Domain, including narrow straights and channels</li>
+  <li>Spatial vs. Temporal Scales: cannot represent eddies (“ocean weather”) in climate resoultion ocean models; Rossby radius of deformation is 10s-100s km vs. 1000 km in Atm.</li>
+  <li>Equilibrium timescale: small amount of mixing across density surfaces means that the ocean takes a long time to come into equilibrium; have to accept that the deep ocean is not in equilibrium in many simulations</li>
+  <li>Bottom topography: discretization creates step functions</li>
+  <li>Large heat capacity</li>
+</ul>
 
 
 
@@ -336,6 +357,9 @@ To do Assignment #2, you can read them in using <code class="language-plaintext 
 <blockquote class="keypoints">
   <h2>Key Points</h2>
   <ul>
+    
+    <li>
+</li>
     
   </ul>
 </blockquote>
@@ -385,7 +409,7 @@ To do Assignment #2, you can read them in using <code class="language-plaintext 
   <div class="col-xs-1">
     <h3 class="text-left">
       
-      <a href="../03-diagnostics/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      <a href="../01-Review/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
       
     </h3>
   </div>
@@ -395,7 +419,7 @@ To do Assignment #2, you can read them in using <code class="language-plaintext 
   <div class="col-xs-1">
     <h3 class="text-right">
       
-      <a href="../"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span><span class="sr-only">lesson home</span></a>
+      <a href="../03-Ice-Modeling/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
       
     </h3>
   </div>

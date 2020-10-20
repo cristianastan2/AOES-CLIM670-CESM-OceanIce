@@ -64,7 +64,7 @@
 	<![endif]-->
 
   <title>
-  Ocean and Ice Modeling
+  CESM G compset &ndash; Ocean and Ice Modeling
   </title>  
 
   </head>
@@ -195,13 +195,74 @@
 
 
 
-<h1 class="maintitle"><a href="../index.html">Ocean and Ice Modeling</a></h1>
 
 
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="../03-Ice-Modeling/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+    <h3 class="maintitle"><a href="../">Ocean and Ice Modeling</a></h3>
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="../"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span><span class="sr-only">lesson home</span></a>
+      
+    </h3>
+  </div>
+</div>
 
 <article>
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+    <h1 class="maintitle">CESM G compset</h1>
+  </div>
+  <div class="col-md-1">
+  </div>
+</div>
 
-<h1 id="review" class="maintitle">Review</h1>
+
+
+
+
+
+
+
+
+
+
 
 <blockquote class="objectives">
   <h2>Overview</h2>
@@ -209,343 +270,7 @@
   <div class="row">
     <div class="col-md-3">
       <strong>Teaching:</strong>  min
-      <br />
-      <strong>Exercises:</strong>  min
-    </div>
-    <div class="col-md-9">
-      <strong>Questions</strong>
-      <ul>
-	
-	<li><p>What have we learned so far?</p>
-</li>
-	
-	<li><p>Where are we going?</p>
-</li>
-	
-      </ul>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-3">
-    </div>
-    <div class="col-md-9">
-      <strong>Objectives</strong>
-      <ul>
-	
-      </ul>
-    </div>
-  </div>
-
-</blockquote>
-
-<p>Midway through the semester is a good time to pause and review what we have learned so far and what we have left.</p>
-
-<h2 id="what-have-we-learned-so-far">What have we learned so far?</h2>
-
-<ul>
-  <li>Some Unix commands</li>
-  <li>How to use JupyterLab</li>
-  <li>Reading and plotting Climate Model Output</li>
-  <li>An overview of Atmospheric Models</li>
-  <li>How to run CESM in fully coupled mode (B compset)</li>
-  <li>How to modify the CESM to change how long to run, what to output and how often</li>
-  <li>How to understand and postprocess CESM output</li>
-  <li>How to run diagnostics packages for CESM</li>
-  <li>Some advanced Python functions – groupby</li>
-  <li>How to setup and run the Atmosphere and Land components of CESM with DOCN (F Compset)</li>
-  <li>How to troubleshoot our model runs</li>
-</ul>
-
-<h2 id="where-are-we-going">Where are we going?</h2>
-
-<ul>
-  <li>Overview of Ocean and Ice Modeling</li>
-  <li>How to run the Ocean and and Ice components of CESM with DATM</li>
-  <li>How to change model code</li>
-  <li>How to perform Intervention or Idealized experiments</li>
-  <li>Reduced complexity models, why use them? how to run them?</li>
-  <li>How to run an Initialized Prediction Experiment (Forecast)</li>
-  <li>Regional Modeling</li>
-  <li>Land and Land Ice</li>
-  <li>Your projects!</li>
-</ul>
-
-<h2 id="atmospheric-modeling">Atmospheric Modeling</h2>
-
-<ol>
-  <li>
-    <p>Dynamics (Equations of motion)
-Assumptions: hydrostatic
-Linearize, discretize, solve numerically
-Predict:  thickness(w),u,v,q,T</p>
-  </li>
-  <li>Physics (Sub grid-scale Parameterized)
-    <ul>
-      <li>Clouds</li>
-      <li>Radiation</li>
-      <li>Convection</li>
-      <li>Microphysics</li>
-      <li>Boundary layer</li>
-      <li>Fluxes</li>
-      <li>Gravity waves</li>
-    </ul>
-  </li>
-  <li>Boundary Forcing
-Information exchnaged with or prescried by other components of the climate system (e.g. soil moisture, sea surface temperature)</li>
-</ol>
-
-<h2 id="cesm-quickstart">CESM Quickstart</h2>
-
-<p>A review of our CESM quickstart procedure</p>
-
-<p>Create a newcase (this script is located in CIMEROOT/scripts)</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./create_newcase <span class="nt">--case</span> CASEROOT <span class="nt">--res</span> RESOLUTION <span class="nt">--compset</span> COMPSET <span class="nt">--project</span> UGMU0032
-</code></pre></div></div>
-
-<p>Setup the case (run from your case directory)</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./case.setup
-</code></pre></div></div>
-
-<p>Make your changes to the namelists, .xml files, and/or source codes</p>
-
-<ul>
-  <li>Use <code class="language-plaintext highlighter-rouge">xmlchange</code> for <code class="language-plaintext highlighter-rouge">.xml</code> files</li>
-  <li>Use <code class="language-plaintext highlighter-rouge">user_nl_xxx</code> for namelist changes</li>
-  <li>Use <code class="language-plaintext highlighter-rouge">SourceMods/src.xxx</code> for code changes (we will talk about this today)</li>
-</ul>
-
-<p>Build the case</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>qcmd <span class="nt">--</span> ./case.build
-</code></pre></div></div>
-
-<p>Submit the run</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./case.submit
-</code></pre></div></div>
-
-<h2 id="cesm-compsets-we-have-used-so-far">CESM Compsets we have used so far</h2>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">B</code> all components are active (fully coupled)</li>
-  <li><code class="language-plaintext highlighter-rouge">F</code> atmosphere and land are active; ocean and ice are inactive (data)</li>
-</ul>
-
-<h2 id="today-we-will-work-with">Today we will work with</h2>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">G</code> ocean and ice are active; atmosphere and land are inactive (data)</li>
-</ul>
-
-<blockquote class="keypoints">
-  <h2>Key Points</h2>
-  <ul>
-    
-    <li>
-</li>
-    
-  </ul>
-</blockquote>
-
-<hr />
-
-<h1 id="ocean-and-sea-ice-modeling" class="maintitle">Ocean and Sea Ice Modeling</h1>
-
-<blockquote class="objectives">
-  <h2>Overview</h2>
-
-  <div class="row">
-    <div class="col-md-3">
-      <strong>Teaching:</strong>  min
-      <br />
-      <strong>Exercises:</strong>  min
-    </div>
-    <div class="col-md-9">
-      <strong>Questions</strong>
-      <ul>
-	
-	<li><p>How to Ocean and Ice Models work?</p>
-</li>
-	
-      </ul>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-3">
-    </div>
-    <div class="col-md-9">
-      <strong>Objectives</strong>
-      <ul>
-	
-      </ul>
-    </div>
-  </div>
-
-</blockquote>
-
-<p>Just like the atmosphere and land models are typically run together, the ocean and sea ice models are also typically run together.  We will learn about what ocean and sea ice models predict, what they explicitly resolve, what they paramaterize, and some of the challenges of ocean and sea ice modeling.</p>
-
-<h2 id="ocean-models">Ocean Models</h2>
-
-<p>The CESM2 ocean component is called POP (Parallel Ocean Program).  The next version of CESM (CESM3) will use a different ocean model called MOM (Modular Ocean Model).  Regardless of the exact model used, the fundamentals of ocean modeling are similar and consist of dynamics and physics. They may also consist of biological and chemical processes as well, but we will not discuss this part.</p>
-
-<p><strong>Dynamics</strong></p>
-
-<ul>
-  <li>Seven Equations and 7 unknowns: U,V,W,T,S,rho,P</li>
-  <li>Plus equations for tracers (chemical, biological, isotopes indicated age of water masses)</li>
-  <li>Approximations: Hydrostatic, Boussinesq</li>
-  <li>Linearize, discretize, solve numerically</li>
-</ul>
-
-<p><strong>Parameterized Physics</strong></p>
-
-<ul>
-  <li>
-    <p>Vertical mixing: surface boundary layer, interior</p>
-  </li>
-  <li>
-    <p>Lateral mixing: mesoscale eddies
-Such as the Kuroshio, Gulf Stream, Aghulas, Brazil, etc.  This is weather in the ocean.  Unlike in the atmosphere, current climate resolution ocean models do not resolve ocean weather.</p>
-  </li>
-  <li>
-    <p>Horizontal viscosity</p>
-  </li>
-  <li>
-    <p>Overflows (Deep channel and Continental shelves)
-Parameterizes the acceleration of dense water down the slope of bottom topography in deep channels (Denmark Strait, Faroe Bank Channel) and continental shelves (Ross and Weddell Seas).  This acceleration of dense water causes vigorious mixing and entrainment that is smaller than the resolution of ocn models.</p>
-  </li>
-  <li>
-    <p>Submesoscale eddies</p>
-  </li>
-  <li>
-    <p>Estuary box model parmeterization (Rivers)</p>
-  </li>
-  <li>
-    <p>Solar absorption: how is radiation absorbed at different depths?</p>
-  </li>
-</ul>
-
-<h2 id="some-challenges-in-ocean-modeling">Some Challenges in Ocean Modeling</h2>
-
-<ul>
-  <li>Irregular Domain, including narrow straights and channels</li>
-  <li>Spatial vs. Temporal Scales: cannot represent eddies (“ocean weather”) in climate resoultion ocean models; Rossby radius of deformation is 10s-100s km vs. 1000 km in Atm.</li>
-  <li>Equilibrium timescale: small amount of mixing across density surfaces means that the ocean takes a long time to come into equilibrium; have to accept that the deep ocean is not in equilibrium in many simulations</li>
-  <li>Bottom topography: discretization creates step functions</li>
-  <li>Large heat capacity</li>
-</ul>
-
-<blockquote class="keypoints">
-  <h2>Key Points</h2>
-  <ul>
-    
-    <li>
-</li>
-    
-  </ul>
-</blockquote>
-
-<hr />
-
-<h1 id="sea-ice-modeling" class="maintitle">Sea Ice Modeling</h1>
-
-<blockquote class="objectives">
-  <h2>Overview</h2>
-
-  <div class="row">
-    <div class="col-md-3">
-      <strong>Teaching:</strong>  min
-      <br />
-      <strong>Exercises:</strong>  min
-    </div>
-    <div class="col-md-9">
-      <strong>Questions</strong>
-      <ul>
-	
-	<li><p>How Does Sea Ice Modeling work?</p>
-</li>
-	
-      </ul>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-3">
-    </div>
-    <div class="col-md-9">
-      <strong>Objectives</strong>
-      <ul>
-	
-      </ul>
-    </div>
-  </div>
-
-</blockquote>
-
-<h2 id="why-is-it-important-to-model-sea-ice">Why is it important to model sea ice?</h2>
-
-<ul>
-  <li>Arctic sea ice extent is known to be decreasing due to Arctic Amplification, the effect that the poles are warming faster than the rest of the globe.</li>
-  <li>Sea ice feedsback to other components of the climate system</li>
-  <li>It has high albedo which has an impact on the Earth’s radiation budget</li>
-  <li>It insulates the ocean from the atmosphere which impacts the exhanges of heat and moisture</li>
-  <li>Can modify ocena circulation: Ice formation leads to salt flux to ocean; ice melt freshens the oceans</li>
-</ul>
-
-<h2 id="sea-ice-models">Sea Ice Models</h2>
-
-<p>The CESM2 sea ice component is called CICE. Sea ice models have two primary components, some models have a 3rd component:</p>
-
-<p><strong>Dynamics</strong></p>
-
-<p>Force balance to determine the motion of the sea ice
-Wind stress, water stress, internal ice stress, Coriolis, and stress associated with sea surface slope
-Resistant to converence and shear</p>
-
-<p><strong>Thermodynamics and Radiative Properties</strong></p>
-
-<ul>
-  <li>Solves the vertical ice temperature profile: 8 sea ice thickness categories; 3 snow layers</li>
-  <li>Determines the Vertical/lateral melt and growth rates</li>
-  <li>Albedo</li>
-  <li>Radiation</li>
-  <li>Aerosol Depositing and cycling</li>
-</ul>
-
-<p><strong>Ice Thickness Distribution</strong></p>
-
-<p>Sub-gridscale parameterization to represent the spatial hterogeneity in ice</p>
-
-<ul>
-  <li>Five ice categories</li>
-  <li>PDF of the ice thickness evolution is solved</li>
-  <li>Convergence, ice growth</li>
-</ul>
-
-<blockquote class="keypoints">
-  <h2>Key Points</h2>
-  <ul>
-    
-    <li>
-</li>
-    
-  </ul>
-</blockquote>
-
-<hr />
-
-<h1 id="cesm-g-compset" class="maintitle">CESM G compset</h1>
-
-<blockquote class="objectives">
-  <h2>Overview</h2>
-
-  <div class="row">
-    <div class="col-md-3">
-      <strong>Teaching:</strong>  min
-      <br />
+      <br/>
       <strong>Exercises:</strong>  min
     </div>
     <div class="col-md-9">
@@ -731,6 +456,11 @@ start-jupyter
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ds_amean</span><span class="o">=</span><span class="n">ds</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s">'time'</span><span class="p">)</span>
 </code></pre></div></div>
 
+
+
+
+
+
 <blockquote class="keypoints">
   <h2>Key Points</h2>
   <ul>
@@ -741,10 +471,67 @@ start-jupyter
   </ul>
 </blockquote>
 
-<hr />
-
-
 </article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="../03-Ice-Modeling/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="../"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span><span class="sr-only">lesson home</span></a>
+      
+    </h3>
+  </div>
+</div>
+
 
       
       

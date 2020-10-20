@@ -19,13 +19,13 @@ keypoints:
 
 The CESM2 sea ice component is called CICE. Sea ice models have two primary components, some models have a 3rd component:
 
-1. Dynamics
+__Dynamics__
 
 Force balance to determine the motion of the sea ice
 Wind stress, water stress, internal ice stress, Coriolis, and stress associated with sea surface slope
 Resistant to converence and shear
 
-2. Thermodynamics 
+__Thermodynamics and Radiative Properties__
 
 * Solves the vertical ice temperature profile: 8 sea ice thickness categories; 3 snow layers
 * Determines the Vertical/lateral melt and growth rates
@@ -33,7 +33,7 @@ Resistant to converence and shear
 * Radiation
 * Aerosol Depositing and cycling
 
-3. Ice Thickness Distribution
+__Ice Thickness Distribution__
 
 Sub-gridscale parameterization to represent the spatial hterogeneity in ice
 

@@ -64,7 +64,7 @@
 	<![endif]-->
 
   <title>
-  Figures &ndash; Ocean and Ice Modeling
+  Sea Ice Modeling &ndash; Ocean and Ice Modeling
   </title>  
 
   </head>
@@ -195,87 +195,224 @@
 
 
 
-<h1 class="maintitle"><a href="../index.html">Ocean and Ice Modeling</a>: Figures</h1>
 
 
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="../02-Ocean-Modeling/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+    <h3 class="maintitle"><a href="../">Ocean and Ice Modeling</a></h3>
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="../04-Running-OcnIce/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
+      
+    </h3>
+  </div>
+</div>
 
 <article>
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+    <h1 class="maintitle">Sea Ice Modeling</h1>
+  </div>
+  <div class="col-md-1">
+  </div>
+</div>
 
-<script>
-  window.onload = function() {
-    var lesson_episodes = [
+
+
+
+
+
+
+
+
+
+
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong>  min
+      <br/>
+      <strong>Exercises:</strong>  min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>How Does Sea Ice Modeling work?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<h2 id="why-is-it-important-to-model-sea-ice">Why is it important to model sea ice?</h2>
+
+<ul>
+  <li>Arctic sea ice extent is known to be decreasing due to Arctic Amplification, the effect that the poles are warming faster than the rest of the globe.</li>
+  <li>Sea ice feedsback to other components of the climate system</li>
+  <li>It has high albedo which has an impact on the Earth’s radiation budget</li>
+  <li>It insulates the ocean from the atmosphere which impacts the exhanges of heat and moisture</li>
+  <li>Can modify ocena circulation: Ice formation leads to salt flux to ocean; ice melt freshens the oceans</li>
+</ul>
+
+<h2 id="sea-ice-models">Sea Ice Models</h2>
+
+<p>The CESM2 sea ice component is called CICE. Sea ice models have two primary components, some models have a 3rd component:</p>
+
+<p><strong>Dynamics</strong></p>
+
+<p>Force balance to determine the motion of the sea ice
+Wind stress, water stress, internal ice stress, Coriolis, and stress associated with sea surface slope
+Resistant to converence and shear</p>
+
+<p><strong>Thermodynamics and Radiative Properties</strong></p>
+
+<ul>
+  <li>Solves the vertical ice temperature profile: 8 sea ice thickness categories; 3 snow layers</li>
+  <li>Determines the Vertical/lateral melt and growth rates</li>
+  <li>Albedo</li>
+  <li>Radiation</li>
+  <li>Aerosol Depositing and cycling</li>
+</ul>
+
+<p><strong>Ice Thickness Distribution</strong></p>
+
+<p>Sub-gridscale parameterization to represent the spatial hterogeneity in ice</p>
+
+<ul>
+  <li>Five ice categories</li>
+  <li>PDF of the ice thickness evolution is solved</li>
+  <li>Convergence, ice growth</li>
+</ul>
+
+
+
+
+
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
     
-      
-    "/01-Review/index.html",
+    <li>
+</li>
     
-      
-    "/02-Ocean-Modeling/index.html",
-    
-      
-    "/03-Ice-Modeling/index.html",
-    
-      
-    "/04-Running-OcnIce/index.html"
-    
-    ];
-
-    var xmlHttp = [];  /* Required since we are going to query every episode. */
-    for (i=0; i < lesson_episodes.length; i++) {
-
-      xmlHttp[i] = new XMLHttpRequest();
-      xmlHttp[i].episode = lesson_episodes[i];  /* To enable use this later. */
-      xmlHttp[i].onreadystatechange = function() {
-
-        if (this.readyState == 4 && this.status == 200) {
-          var parser = new DOMParser();
-          var htmlDoc = parser.parseFromString(this.responseText,"text/html");
-          var htmlDocArticle = htmlDoc.getElementsByTagName("article")[0];
-
-          var article_here = document.getElementById(this.episode);
-          var images = htmlDocArticle.getElementsByTagName("img");
-
-          if (images.length > 0) {
-            var h1text = htmlDocArticle.getElementsByTagName("h1")[0].innerHTML;
-
-            var htitle = document.createElement('h2');
-            htitle.innerHTML = h1text;
-            article_here.appendChild(htitle);
-
-            var image_num = 0;
-            for (let image of images) {
-              image_num++;
-
-              var title = document.createElement('p');
-              title.innerHTML = "<strong>Figure " + image_num + ".</strong> " + image.alt;
-              article_here.appendChild(title);
-
-              article_here.appendChild(image.cloneNode(false));
-
-              if (image_num < images.length) {
-                var hr = document.createElement('hr');
-                article_here.appendChild(hr);
-              }
-            }
-          }
-        }
-      }
-      episode_url = ".." + lesson_episodes[i];
-      xmlHttp[i].open("GET", episode_url);
-      xmlHttp[i].send(null);
-    }
-  }
-</script>
-
-<article id="/01-Review/index.html" class="figures"></article>
-
-<article id="/02-Ocean-Modeling/index.html" class="figures"></article>
-
-<article id="/03-Ice-Modeling/index.html" class="figures"></article>
-
-<article id="/04-Running-OcnIce/index.html" class="figures"></article>
-
+  </ul>
+</blockquote>
 
 </article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="../02-Ocean-Modeling/index.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span><span class="sr-only">previous episode</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="../04-Running-OcnIce/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
+      
+    </h3>
+  </div>
+</div>
+
 
       
       
