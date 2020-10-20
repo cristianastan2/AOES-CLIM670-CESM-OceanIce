@@ -1,0 +1,726 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="last-modified" content="2020-09-29 07:15:05 -0600">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- meta "search-domain" used for google site search function google_search() -->
+    <meta name="search-domain" value="">
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/lesson.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/syntax.css" />
+    <link rel="license" href="#license-info" />
+
+    
+
+
+
+    <!-- Favicons for everyone -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="../assets/favicons/swc/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/favicons/swc/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/favicons/swc/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/favicons/swc/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="../assets/favicons/swc/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="../assets/favicons/swc/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="../assets/favicons/swc/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../assets/favicons/swc/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="../assets/favicons/swc/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Software Carpentry - CESM Troubleshooting"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="../assets/favicons/swc/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="../assets/favicons/swc/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="../assets/favicons/swc/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="../assets/favicons/swc/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="../assets/favicons/swc/mstile-310x310.png" />
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+  <title>
+  Our Experiments &ndash; CESM Troubleshooting
+  </title>  
+
+  </head>
+  <body>
+
+    
+
+
+
+
+
+
+
+    <div class="container">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      
+      <a class="navbar-brand" href="../index.html">Home</a>
+
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+        
+        <li class="dropdown">
+          <a href="../" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Episodes <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            
+            
+            <li><a href="../01-Our-Experiments-Troubleshooting/index.html">Our Experiments</a></li>
+            
+            
+            <li><a href="../02-history-setup/index.html">History and Setup for Diagnostics</a></li>
+            
+            
+            <li><a href="../03-diagnostics/index.html">Model Diagnostics Packages</a></li>
+            
+            
+            <li><a href="../04-postprocessing/index.html">Postprocessing</a></li>
+            
+	    <li role="separator" class="divider"></li>
+            <li><a href="../aio/index.html">All in one page (Beta)</a></li>
+          </ul>
+        </li>
+
+	
+	
+        <li class="dropdown">
+          <a href="../" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Extras <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="../reference.html">Reference</a></li>
+            
+            
+            <li><a href="../about/index.html">About</a></li>
+            
+            
+            <li><a href="../discuss/index.html">Discussion</a></li>
+            
+            
+            <li><a href="../figures/index.html">Figures</a></li>
+            
+            
+            <li><a href="../guide/index.html">Instructor Notes</a></li>
+            
+          </ul>
+        </li>
+	
+
+      </ul>
+      <form class="navbar-form navbar-right" role="search" id="search" onsubmit="google_search(); return false;">
+        <div class="form-group">
+          <input type="text" id="google-search" placeholder="Search..." aria-label="Google site search">
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="../"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span><span class="sr-only">lesson home</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+    <h3 class="maintitle"><a href="../">CESM Troubleshooting</a></h3>
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="../02-history-setup/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+<article>
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+    <h1 class="maintitle">Our Experiments</h1>
+  </div>
+  <div class="col-md-1">
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<blockquote class="objectives">
+  <h2>Overview</h2>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Teaching:</strong>  min
+      <br/>
+      <strong>Exercises:</strong>  min
+    </div>
+    <div class="col-md-9">
+      <strong>Questions</strong>
+      <ul>
+	
+	<li><p>How can I confirm if everything ran correctly?</p>
+</li>
+	
+	<li><p>How can I troubleshoot errors?</p>
+</li>
+	
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <strong>Objectives</strong>
+      <ul>
+	
+      </ul>
+    </div>
+  </div>
+
+</blockquote>
+
+<p>We have three cases (or experiments) we are working with.  We will take a look at what happened with each one of them.</p>
+
+<ol>
+  <li>
+    <dl>
+      <dt>b.day1.0</dt>
+      <dd>This was our first case that ran initially for 5-days.  We then set <code class="language-plaintext highlighter-rouge">CONTINUE_RUN=TRUE</code> and ran it again for another 5-days.
+This run should have completed successfully. How can we confirm this?</dd>
+    </dl>
+  </li>
+</ol>
+
+<blockquote class="challenge">
+  <h2 id="check-your-casestatus-file">Check your CaseStatus file</h2>
+
+  <p>Go to your case directory for this case and look at the end of the <code class="language-plaintext highlighter-rouge">CaseStatus</code> file</p>
+  <div class="language-plaintext source highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tail CaseStatus
+</code></pre></div>  </div>
+</blockquote>
+
+<p>Now let’s check out the output from this case.  Remember, it is located in the DOUT_S_ROOT directory.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cases/b.day1.0&gt; ./xmlquery DOUT_S_ROOT
+</code></pre></div></div>
+
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+	DOUT_S_ROOT: /glade/scratch/kpegion/archive/b.day1.0
+</code></pre></div></div>
+
+<p>We will go there and see if we now have 10 days of data.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /glade/scratch/kpegion/archive/b.day1.0
+<span class="nb">cd </span>ocn/hist
+</code></pre></div></div>
+
+<p>We now have two output files for the ocean: <code class="language-plaintext highlighter-rouge">b.day1.0.pop.h.nday1.0001-01-01.nc</code> and <code class="language-plaintext highlighter-rouge">b.day1.0.pop.h.nday1.0001-01-06.nc</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">b.day1.0.pop.h.nday1.0001-01-01.nc</code> is the same file we looked at last week which has the first 5-days.<br />
+<code class="language-plaintext highlighter-rouge">b.day1.0.pop.h.nday1.0001-01-06.nc</code> contains the next 5-days that we ran by setting <code class="language-plaintext highlighter-rouge">CONTINUE_RUN=TRUE</code>
+Use ncview to look at these files.</p>
+
+<ol>
+  <li>
+    <dl>
+      <dt>Second case</dt>
+      <dd>This is our case that we are running for 4-years with daily precip and standard monthly output to use for Assignment #2. Assuming the configuration and namelist changes were entered correctly, this run should have completed successfully.</dd>
+    </dl>
+  </li>
+</ol>
+
+<ul>
+  <li>Check your <code class="language-plaintext highlighter-rouge">CaseStatus</code> file.</li>
+  <li>If errors, check your log file</li>
+  <li>If no errors, check your output:</li>
+</ul>
+
+<p>There should be monthly and daily output for the atmosphere. Let’s confirm:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /glade/scratch/kpegion/archive/test1/atm/hist
+<span class="nb">ls</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">test1.cam.h0.*.nc</code> files contain monthly averaged data.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">test1.cam.h1.*.nc</code> contain daily averaged data.</p>
+
+<blockquote class="challenge">
+  <h2 id="what-is-in-these-files">What is in these files?</h2>
+
+  <p>We will look at each file using <code class="language-plaintext highlighter-rouge">ncdump -h</code> to understand what is in the files.</p>
+
+  <p>What variables are in the h0 files?
+What variables are in the h1 files?</p>
+
+  <p>We set this with the namelist options</p>
+
+  <p><code class="language-plaintext highlighter-rouge">fincl2 = 'PRECC', 'PRECL'</code></p>
+
+  <p><code class="language-plaintext highlighter-rouge">nhtfrq = 0, -24</code></p>
+
+  <p>How many times are in the h0 files?</p>
+
+  <p>How many times are in the h1 files?</p>
+
+  <p>We set this with the <code class="language-plaintext highlighter-rouge">mfilt = 1,1</code> namelist option.</p>
+
+  <p>Remember, you can look up namelist <a href="http://www.cesm.ucar.edu/models/cesm2/settings/current/">options</a></p>
+
+  <dl>
+    <dt>mfilt</dt>
+    <dd>Array containing the maximum number of time samples written to a history file.  The first value applies to the primary history file, the second through tenth to the auxillary history files.  Default: 1,30,30,30,30,30,30,30,30,30</dd>
+  </dl>
+
+</blockquote>
+
+<p>We have lots of history files and we can look at each of them using <code class="language-plaintext highlighter-rouge">ncview</code>, but that is not very useful.</p>
+
+<p>We can read in all the files using Python <code class="language-plaintext highlighter-rouge">xarray</code>, but its a lot of data.</p>
+
+<p>There are some useful tools for postprocessing the data to get <code class="language-plaintext highlighter-rouge">timeseries</code> files and easily take a look at some common diagnostics.  We will learn about those later in this class.</p>
+
+<ol>
+  <li>
+    <dl>
+      <dt>BRANCH case:</dt>
+      <dd>This is the branch case we ran with lots of configuration changes and namelist changes.  This run produces an error with the configuration provided.</dd>
+    </dl>
+  </li>
+</ol>
+
+<p>We can review how we created and setup our run by looking at the first line of the <code class="language-plaintext highlighter-rouge">README.case</code> file:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cases/branchwrong&gt; <span class="nb">head</span> <span class="nt">-n1</span> README.case
+</code></pre></div></div>
+
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2020-09-28 09:07:01: ./create_newcase --case /glade/u/home/kpegion/cases/branchwrong --res f19_g17 --compset B1850 --project UGMU0035
+</code></pre></div></div>
+
+<p>You can see that I initially made a mistake in my <code class="language-plaintext highlighter-rouge">create_newcase</code> by mistyping the project number.</p>
+
+<p>We can review any changes we made to the configuration of the run by looking at <code class="language-plaintext highlighter-rouge">CaseStatus</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cases/branchwrong&gt; more CaseStatus
+</code></pre></div></div>
+
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2020-09-28 09:13:01: xmlchange success &lt;command&gt; ./xmlchange RUN_TYPE=branch,RUN_REFCASE=b.day1.0,RUN_REFDATE=0001-01-05,CLM_NAMELIST_OPTS=,GET_REFCA
+SE=FALSE,STOP_OPTION=nmonths,STOP_N=1,RESUBMIT=1,CCSM_CO2_PPMV=569.4  &lt;/command&gt;
+ ---------------------------------------------------
+2020-09-28 09:13:20: xmlchange success &lt;command&gt; ./xmlchange JOB_WALLCLOCK_TIME=2:00:00  &lt;/command&gt;
+ ---------------------------------------------------
+2020-09-28 09:13:24: case.setup starting
+ ---------------------------------------------------
+2020-09-28 09:13:25: case.setup success
+ ---------------------------------------------------
+2020-09-28 09:29:20: case.build starting
+ ---------------------------------------------------
+CESM version is cesm2.1.1-exp17
+Processing externals description file : Externals.cfg
+Processing externals description file : Externals_CLM.cfg
+Processing externals description file : Externals_POP.cfg
+Processing externals description file : Externals_CISM.cfg
+Checking status of externals: clm, fates, ptclm, mosart, ww3, cime, cice, pop, cvmix, marbl, cism, source_cism, rtm, cam,
+    ./cime
+        clean sandbox, on cime5.6.19
+    ./components/cam
+        clean sandbox, on cam1/release_tags/cam_cesm2_1_rel_29/components/cam
+    ./components/cice
+        clean sandbox, on cice5_cesm2_1_1_20190321
+    ./components/cism
+        clean sandbox, on release-cesm2.0.04
+    ./components/cism/source_cism
+        clean sandbox, on release-cism2.1.03
+    ./components/clm
+        clean sandbox, on release-clm5.0.25
+    ./components/clm/src/fates
+        clean sandbox, on fates_s1.21.0_a7.0.0_br_rev2
+    ./components/clm/tools/PTCLM
+        clean sandbox, on PTCLM2_180611
+    ./components/mosart
+        clean sandbox, on release-cesm2.0.03
+    ./components/pop
+        clean sandbox, on pop2_cesm2_1_rel_n06
+    ./components/pop/externals/CVMix
+        clean sandbox, on v0.93-beta
+    ./components/pop/externals/MARBL
+        clean sandbox, on cesm2.1-n00
+    ./components/rtm
+        clean sandbox, on release-cesm2.0.02
+    ./components/ww3
+        clean sandbox, on ww3_181001
+2020-09-28 09:38:13: case.build success
+ ---------------------------------------------------
+2020-09-28 09:38:27: case.submit starting
+ ---------------------------------------------------
+2020-09-28 09:38:35: case.submit error
+ERROR: Command: 'qsub -q regular -l walltime=2:00:00 -A UGMU0035 -v ARGS_FOR_SCRIPT='--resubmit' .case.run' failed with error 'qsub: Invalid account, available ac
+counts:
+Project, Status, Active
+P05010048, Normal, True
+P93300190, Overspent, True
+UGMU0032, Normal, True
+P93300042, Overspent, True' from dir '/glade/u/home/kpegion/cases/branchwrong'
+ ---------------------------------------------------
+2020-09-28 09:39:35: xmlchange success &lt;command&gt; ./xmlchange PROJECT=UGMU0032  &lt;/command&gt;
+ ---------------------------------------------------
+2020-09-28 09:39:51: case.submit starting
+ ---------------------------------------------------
+2020-09-28 09:39:58: case.submit success case.run:4355823.chadmin1.ib0.cheyenne.ucar.edu, case.st_archive:4355824.chadmin1.ib0.cheyenne.ucar.edu
+ ---------------------------------------------------
+2020-09-28 11:01:58: case.run starting
+ ---------------------------------------------------
+2020-09-28 11:02:04: model execution starting
+ ---------------------------------------------------
+2020-09-28 11:02:07: model execution success
+ ---------------------------------------------------
+2020-09-28 11:02:07: case.run error
+ERROR: RUN FAIL: Command 'mpiexec_mpt -p "%g:"  -np 576  omplace -tm open64  /glade/scratch/kpegion/branchwrong/bld/cesm.exe  &gt;&gt; cesm.log.$LID 2&gt;&amp;1 '
+ failed
+See log file for details: /glade/scratch/kpegion/branchwrong/run/cesm.log.4355823.chadmin1.ib0.cheyenne.ucar.edu.200928-110158
+ ---------------------------------------------------
+</code></pre></div></div>
+
+<p>Another thing we did that is not documented automatically is to copy the restart files from our <code class="language-plaintext highlighter-rouge">b.day1.0</code> case to our new run directory. This was so the model has a set of restart files to start the run from.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cp</span> /glade/scratch/kpegion/archive/b.day1.0/rest/0001-01-06-00000/<span class="k">*</span> /glade/scratch/kpegion/test1/run/ 
+</code></pre></div></div>
+
+<h3 id="how-do-we-figure-out-what-went-wrong">How do we figure out what went wrong?</h3>
+
+<p>Look at your log file and use <code class="language-plaintext highlighter-rouge">grep -i</code> to find errors.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cases/branchwrong&gt; <span class="nb">grep</span> <span class="nt">-i</span> error /glade/scratch/kpegion/branchwrong/run/cesm.log.4355823.chadmin1.ib0.cheyenne.ucar.edu.200928-110158
+</code></pre></div></div>
+
+<div class="language-plaintext output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>16: ERROR: GETFIL: FAILED to get b.day1.0.cam.r.0001-01-05-00000.nc
+4: ERROR: GETFIL: FAILED to get b.day1.0.cam.r.0001-01-05-00000.nc
+29: ERROR: GETFIL: FAILED to get b.day1.0.cam.r.0001-01-05-00000.nc
+33: ERROR: GETFIL: FAILED to get b.day1.0.cam.r.0001-01-05-00000.nc
+34: ERROR: GETFIL: FAILED to get b.day1.0.cam.r.0001-01-05-00000.nc
+3: ERROR: GETFIL: FAILED to get b.day1.0.cam.r.0001-01-05-00000.nc
+22: ERROR: GETFIL: FAILED to get b.day1.0.cam.r.0001-01-05-00000.nc
+18: ERROR: GETFIL: FAILED to get b.day1.0.cam.r.0001-01-05-00000.nc
+...
+</code></pre></div></div>
+
+<p><em>Why is the error repeated many times?</em></p>
+
+<p>The model runs on many processors.  Each one is reporting the error.</p>
+
+<p><em>What does the error mean?</em></p>
+
+<p>This is telling that the model is trying to get a file called <code class="language-plaintext highlighter-rouge">b.day1.0.cam.r.0001-01-05-00000.nc</code> and it is unable to get it.</p>
+
+<p>Let’s go back to our configuration and think back about how we set up this experiment. What do all the configuration changes mean?
+We can take a look in <code class="language-plaintext highlighter-rouge">env_run.xml</code> to confirm what each setting means.</p>
+
+<dl>
+  <dt>RUN_TYPE=branch</dt>
+  <dd>This is a branch run</dd>
+  <dt>RUN_REFCASE=b.day1.0</dt>
+  <dd>Reference directory containing RUN_REFCASE data - used for hybrid or branch runs</dd>
+  <dt>RUN_REFDATE=0001-01-05</dt>
+  <dd>Reference date for hybrid or branch runs (yyyy-mm-dd)</dd>
+  <dt>CLM_NAMELIST_OPTS=’’</dt>
+  <dd>CLM-specific namelist settings for -namelist option in the CLM
+    build-namelist. CLM_NAMELIST_OPTS is normally set as a compset variable
+    and in general should not be modified for supported compsets.
+    It is recommended that if you want to modify this value for your experiment,
+    you should use your own user-defined component sets via using create_newcase
+    with a compset_file argument.
+    This is an advanced flag and should only be used by expert users.</dd>
+</dl>
+
+<p>It seems this option was provided in the NCAR tutorial example, but is not necessary.</p>
+
+<dl>
+  <dt>GET_REFCASE=FALSE</dt>
+  <dd>Flag for automatically prestaging the refcase restart dataset. If TRUE, then the refcase data is prestaged into the executable directory</dd>
+  <dt>STOP_OPTION=nmonths</dt>
+  <dd>Sets the run length along with STOP_N and STOP_DATE</dd>
+  <dt>STOP_N=1</dt>
+  <dd>Provides a numerical count for $STOP_OPTION.</dd>
+  <dt>RESUBMIT=1</dt>
+  <dd>If RESUBMIT is greater than 0, then case will automatically resubmit
+Since we later set our queue time to only 2 hours, there may be a need to resubmit to complete the run.</dd>
+  <dt>CCSM_CO2_PPMV=569.4</dt>
+  <dd>Mechanism for setting the CO2 value in ppmv for CLM if CLM_CO2_TYPE is constant or for POP if OCN_CO2_TYPE is constant.  This is the CO2 value that gets propogated to the ocean and land models.</dd>
+  <dt>JOB_WALLCLOCK_TIME=2:00:00</dt>
+  <dd>The machine wallclock setting.
+This means how long we tell it to run in the queue.  The maximum and default are 12:00:00, but we can get our run in 
+more quickly if we tell it we need less time.</dd>
+</dl>
+
+<blockquote class="challenge">
+  <h2 id="do-you-see-anything-in-the-configuration-that-could-have-led-to-our-error">Do you see anything in the configuration that could have led to our error?</h2>
+
+  <p>Look at the <code class="language-plaintext highlighter-rouge">RUN_REFDATE</code> and the date we used for our restart file</p>
+
+  <blockquote class="solution">
+    <h2 id="solution">Solution</h2>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">RUN_REFDATE</span><span class="o">=</span>0001-01-06
+<span class="nb">cp</span> /glade/scratch/kpegion/archive/b.day1.0/rest/0001-01-06-00000/<span class="k">*</span> /glade/scratch/kpegion/test1/run/ 
+</code></pre></div>    </div>
+
+  </blockquote>
+
+  <p>Fix it!</p>
+
+</blockquote>
+
+<p>What did those namelist changes do?</p>
+
+<p><a href="http://www.cesm.ucar.edu/models/cesm2/settings/current/">We can look them up</a></p>
+
+<p>In <code class="language-plaintext highlighter-rouge">user_nl_cam</code></p>
+
+<dl>
+  <dt>co2vmr=569.4e-6</dt>
+  <dd>CO2 volume mixing ratio.  This is used as the time invariant surface value of CO2 if no time varying values are specified.  Default: set by build-namelist.</dd>
+  <dt>ch4vmr = 1583.2e-9</dt>
+  <dd>CH4 volume mixing ratio.  This is used as the time invariant surface value of CH4 if no time varying values are specified.  Default: set by build-namelist.</dd>
+  <dt>inithist=’MONTHLY’</dt>
+  <dd>Frequency that initial files will be output
+This produces initial condition files monthly.</dd>
+</dl>
+
+<p>Nothing looks questionable there.</p>
+
+<p>Resubmit your case!</p>
+
+
+
+
+
+
+<blockquote class="keypoints">
+  <h2>Key Points</h2>
+  <ul>
+    
+    <li>
+</li>
+    
+  </ul>
+</blockquote>
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-1">
+    <h3 class="text-left">
+      
+      <a href="../"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span><span class="sr-only">lesson home</span></a>
+      
+    </h3>
+  </div>
+  <div class="col-xs-10">
+    
+  </div>
+  <div class="col-xs-1">
+    <h3 class="text-right">
+      
+      <a href="../02-history-setup/index.html"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span><span class="sr-only">next episode</span></a>
+      
+    </h3>
+  </div>
+</div>
+
+
+      
+      
+
+
+
+
+
+
+<footer>
+  <div class="row">
+    <div class="col-md-6 help-links" align="right">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" align="center">
+      Using <a href="https://github.com/carpentries/styles/">The Carpentries style</a>
+      version <a href="https://github.com/carpentries/styles/releases/tag/v9.5.3">9.5.3</a>.
+    </div>
+  </div>
+</footer>
+
+      
+    </div>
+    
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/lesson.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-37305346-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>
