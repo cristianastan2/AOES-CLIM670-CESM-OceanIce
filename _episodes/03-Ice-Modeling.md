@@ -10,14 +10,14 @@ keypoints:
 ## Why is it important to model sea ice?
 
 * Arctic sea ice extent is known to be decreasing due to Arctic Amplification, the effect that the poles are warming faster than the rest of the globe.
-* Sea ice feedsback to other components of the climate system
+* Sea ice feeds back to other components of the climate system
 * It has high albedo which has an impact on the Earth's radiation budget
 * It insulates the ocean from the atmosphere which impacts the exhanges of heat and moisture
 * Can modify ocena circulation: Ice formation leads to salt flux to ocean; ice melt freshens the oceans
 
 ## Sea Ice Models
 
-The CESM2 sea ice component is called CICE. Sea ice models have two primary components, some models have a 3rd component:
+The CESM2 sea ice component is called Community Ice CodE (CICE). Sea ice models have two primary components, some models have a 3rd component:
 
 __Dynamics__
 
