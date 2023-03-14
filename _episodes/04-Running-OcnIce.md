@@ -148,13 +148,13 @@ How would we read this data?
 
 To launch the Jupyter notebook on the NCAR computers
 
-1. Log in to the Production NCAR JupyterHub
-2. Start a server
+1. Log in to the Production [NCAR JupyterHub](https://jupyterhub.hpc.ucar.edu/)
+2. Start a [server](https://arc.ucar.edu/knowledge_base/70549913)
 
 ~~~
 import xarray as xr
 
-path='/glade/scratch/kpegion/archive/gcontrol/ocn/hist/'
+path='/glade/scratch/cstan/archive/gcontrol/ocn/hist/'
 files='gcontrol.pop.h.0001-*.nc'
 ds=xr.open_mfdataset(path+files,combine='nested',
                     concat_dim='time')
