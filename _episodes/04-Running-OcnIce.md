@@ -98,16 +98,16 @@ Run `case.setup`
 
 This exercise demonstrates how to change the source code (i.e. Fortran) of the model.  The original source code resides in:
 
-`/glade/work/USERNAME/cesm2.1.1/`
+`/glade/work/USERNAME/cesm2.1.3/`
 
 Similar to namelists, we don't change the original, we make changes in an alternate location, then modify it to override the default.  Changes to source code go in `SourceMods/src.xxx`
 
 Also, source code changes must be included in the build, so we make the changes before building the model.
 
-Copy the file `/glade/work/USERNAME/cesm2.1.1/components/pop/source/forcing_coupled.F90` to `CASEDIR/SourceMods/src.pop/`
+Copy the file `/glade/work/USERNAME/cesm2.1.3/components/pop/source/forcing_coupled.F90` to `CASEDIR/SourceMods/src.pop/`
 
 ~~~
-cp /glade/work/USERNAME/cesm2.1.1/components/pop/source/forcing_coupled.F90 ~/cases/gwindstress/SourceModes/src.pop/
+cp /glade/work/USERNAME/cesm2.1.3/components/pop/source/forcing_coupled.F90 ~/cases/gwindstress/SourceModes/src.pop/
 ~~~
 {: .language-bash}
 
@@ -135,13 +135,13 @@ Be sure to check that the model built successfully before you run it.  If you ha
 
 Once you have submitted your model runs, they will run relatively quickly if the queue is not too busy. In the meantime, you can look at the output of my model runs to explore the results of these experiments. 
 
-Experiment 1 (control): `/glade/scratch/kpegion/archive/gcontrol/ocn/hist/`
+Experiment 1 (control): `/glade/scratch/cstan/archive/gcontrol/ocn/hist/`
 
-Experiment 2 (overflow): `/glade/scratch/kpegion/archive/goverflow/ocn/hist/`
+Experiment 2 (overflow): `/glade/scratch/cstan/archive/goverflow/ocn/hist/`
 
-Experiment 3 (snow albedo): `/glade/scratch/kpegion/archive/gsnowalb/ice/hist`
+Experiment 3 (snow albedo): `/glade/scratch/cstan/archive/gsnowalb/ice/hist`
 
-Experiment 4 (wind stress): `/glade/scratch/kpegion/archive/gwindstress/ocn/hist`
+Experiment 4 (wind stress): `/glade/scratch/cstan/archive/gwindstress/ocn/hist`
 
 
 How would we read this data?
