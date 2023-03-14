@@ -14,7 +14,7 @@ Ocean/ice active compsets start with `G`.
 Just like the `F` compsets needed SST data as the boundary forcing, `G` compsets require boundary forcing from the atmosphere.  The standard atmospheric forcing provided to a `G` compset is called CORE (Coordinated Ocean-ice Reference Experiments), version 2, atmopsheric datasets (Large and Yeager 2009)
 
 * `G`: this is a standard ocean/ice with data atmosphere/land compset in which the boundary forcing is called `normal year forcing (NYF)`, meaning 12 months of CORE forcing data that repeats (think like a climatology).
-* `GIAF`: this is ocean/ice activate with data atmosphere/land in which teh boundary forcing is interannually varying from CORE forcing data.
+* `GIAF`: this is ocean/ice activate with data atmosphere/land in which the boundary forcing is interannually varying from CORE forcing data.
 
 
 ## Our Experiments
