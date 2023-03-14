@@ -146,16 +146,10 @@ Experiment 4 (wind stress): `/glade/scratch/cstan/archive/gwindstress/ocn/hist`
 
 How would we read this data?
 
-Login to casper and launch Jupyter
+To launch the Jupyter notebook on the NCAR computers
 
-~~~
-module load python/3.6.8
-ncar_pylib 
-start-jupyter
-~~~
-{: .language-bash}
-
-follow the screen for the rest of the steps.
+1. Log in to the Production NCAR JupyterHub
+2. Start a server
 
 ~~~
 import xarray as xr
