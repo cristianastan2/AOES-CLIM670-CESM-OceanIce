@@ -107,7 +107,7 @@ Also, source code changes must be included in the build, so we make the changes 
 Copy the file `/glade/work/USERNAME/cesm2.1.3/components/pop/source/forcing_coupled.F90` to `CASEDIR/SourceMods/src.pop/`
 
 ~~~
-cp /glade/work/USERNAME/cesm2.1.3/components/pop/source/forcing_coupled.F90 ~/cases/gwindstress/SourceModes/src.pop/
+cp /glade/work/USERNAME/cesm2.1.3/components/pop/source/forcing_coupled.F90 ~/cases/gwindstress/SourceMods/src.pop/
 ~~~
 {: .language-bash}
 
