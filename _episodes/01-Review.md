@@ -83,7 +83,7 @@ Make your changes to the namelists, .xml files, and/or source codes
 Build the case
 
 ~~~
-qcmd -- ./case.build
+qcmd -A UGMU0049 -- ./case.build
 ~~~
 {: .language-bash}
 
