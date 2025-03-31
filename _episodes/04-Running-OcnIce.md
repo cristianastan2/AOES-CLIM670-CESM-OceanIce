@@ -154,7 +154,7 @@ To launch the Jupyter notebook on the NCAR computers
 ~~~
 import xarray as xr
 
-path='/glade/scratch/cstan/archive/gcontrol/ocn/hist/'
+path='/glade/derecho/scratch/cstan/archive/gcontrol/ocn/hist/'
 files='gcontrol.pop.h.0001-*.nc'
 ds=xr.open_mfdataset(path+files,combine='nested',
                     concat_dim='time')
