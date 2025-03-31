@@ -13,7 +13,7 @@ keypoints:
 * Sea ice feeds back to other components of the climate system
 * It has high albedo which has an impact on the Earth's radiation budget
 * It insulates the ocean from the atmosphere which impacts the exhanges of heat and moisture
-* Can modify ocena circulation: Ice formation leads to salt flux to ocean; ice melt freshens the oceans
+* Can modify ocean circulation: Ice formation leads to salt flux to ocean; ice melt freshens the oceans
 
 ## Sea Ice Models
 
