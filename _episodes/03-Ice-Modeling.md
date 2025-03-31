@@ -21,9 +21,9 @@ The CESM2 sea ice component is called Community Ice CodE (CICE). Sea ice models 
 
 __Dynamics__
 
-Force balance to determine the motion of the sea ice
-Wind stress, water stress, internal ice stress, Coriolis, and stress associated with sea surface slope
-Resistant to converence and shear
+* Force balance to determine the motion of the sea ice
+* Wind stress, water stress, internal ice stress, Coriolis, and stress associated with sea surface slope
+* Resistant to converence and shear
 
 __Thermodynamics and Radiative Properties__
 
