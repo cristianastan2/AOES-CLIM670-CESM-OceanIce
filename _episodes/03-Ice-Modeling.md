@@ -23,7 +23,7 @@ __Dynamics__
 
 * Force balance to determine the motion of the sea ice
 * Wind stress, water stress, internal ice stress, Coriolis, and stress associated with sea surface slope
-* Resistant to converence and shear
+* Resistance to converence and shear
 
 __Thermodynamics and Radiative Properties__
 
