@@ -74,7 +74,7 @@ Modify `user_nl_cice` as follows:
 `r_snw = 2.00`
 
 This is a tuning parameter that specifies the number of standard deviations away from the base optical properties in the shortwave 
-radiative transfer code.  The default value is -2.00.  It is used in the equation:  `rsnw_nonmelt = 500 - r_snw * 250` (in microns).
+radiative transfer code.  The default value is -2.00.  It is used in the equation for the nonmelting snow grain radius:  `rsnw_nonmelt = 500 - r_snw * 250` (in microns).
 
 Higher values of r_snw -> lower rsnw_nonmelt -> higher albedo.
 
